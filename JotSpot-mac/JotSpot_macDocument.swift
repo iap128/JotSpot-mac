@@ -11,7 +11,7 @@ import UniformTypeIdentifiers
 nonisolated struct JotSpot_macDocument: FileDocument {
     var text: String
 
-    init(text: String = "Hello, world!") {
+    init(text: String = "") {
         self.text = text
     }
 
