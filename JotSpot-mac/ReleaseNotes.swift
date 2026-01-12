@@ -18,7 +18,6 @@ let notes: [ReleaseNotesType] = [
 ]
 
 struct ReleaseNotes: View {
-	@Environment(\.dismiss) private var dismiss
 	let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
 	
 	
@@ -29,25 +28,23 @@ struct ReleaseNotes: View {
 			
 			Divider()
 			
-			ForEach(notes, id: \.self) { note in
-				HStack {
-					Image(systemName: note.image)
-						.resizable()
-						.frame(width: 32, height: 32)
-						.foregroundStyle(.blue)
-					
-					VStack(alignment: .leading) {
-						Text(note.title)
-							.font(.title2)
+			ScrollView {
+				ForEach(notes, id: \.self) { note in
+					HStack {
+						Image(systemName: note.image)
+							.resizable()
+							.frame(width: 32, height: 32)
+							.foregroundStyle(.blue)
 						
-						Text(note.body)
+						VStack(alignment: .leading) {
+							Text(note.title)
+								.font(.title2)
+							
+							Text(note.body)
+						}
+						.padding(.leading)
 					}
-					.padding(.leading)
 				}
-			}
-			
-			Button("Close") {
-				dismiss()
 			}
 			
 			Spacer()

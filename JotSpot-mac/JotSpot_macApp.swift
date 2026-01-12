@@ -44,7 +44,8 @@ struct JotSpot_macApp: App {
 		
 		Window("Release Notes", id: "release-notes") {
 			ReleaseNotes()
+				.windowResizeBehavior(.disabled)
 		}
-		.windowResizability(.contentSize)
+		.defaultSize(width: 400, height: 300)
     }
 }
