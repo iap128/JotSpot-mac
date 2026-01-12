@@ -12,6 +12,7 @@ struct JotSpot_macApp: App {
     var body: some Scene {
         DocumentGroup(newDocument: JotSpot_macDocument()) { file in
             ContentView(document: file.$document)
+            .frame(minWidth: 500, minHeight: 500)
         }
     }
 }
