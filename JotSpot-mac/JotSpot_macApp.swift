@@ -22,6 +22,9 @@ struct JotSpot_macApp: App {
         }
 		.defaultSize(width: 500, height: 500)
         .commands {
+			TextFormattingCommands()
+			TextEditingCommands()
+			
             CommandGroup(after: .help) {
 				Button("Release Notes") {
 					openWindow(id: "release-notes")
