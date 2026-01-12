@@ -7,37 +7,24 @@
 
 import SwiftUI
 import AppKit
+import StoreKit
 
 struct ContentView: View {
 	@Environment(\.undoManager) var undoManager
+	@Environment(\.requestReview) private var requestReview
 	@Binding var document: JotSpot_macDocument
 	@State private var title: String = ""
-	@State private var selectedFont: NSFont = .systemFont(ofSize: 14)
-	@State private var isBold: Bool = false
-	@State private var isItalic: Bool = false
-	@State private var isUnderline: Bool = false
-	@State private var textColor: Color = .primary
-	@State private var textAlignment: NSTextAlignment = .left
 	
 	var body: some View {
-		VStack(spacing: 0) {
+		VStack {
+			toolbar
+			
 			// Document title bar
 			HStack {
 				TextField("New Document", text: $title)
-					.textFieldStyle(.plain)
-					.font(.headline)
 				Button("Name Document", action: { print(title) })
-					.buttonStyle(.borderless)
 			}
 			.padding(.horizontal)
-			.padding(.vertical, 8)
-			
-			Divider()
-			
-			// Formatting toolbar
-			formattingToolbar
-			
-			Divider()
 			
 			// Rich text editor
 			RichTextEditor(
@@ -59,12 +46,12 @@ struct ContentView: View {
 		HStack {
 			Button("Colors", systemImage: "paintpalette", action: showColorPanel)
 			Button("Fonts", systemImage: "textformat", action: showFontPanel)
-			Button("Rate", systemImage: "star", action: { print("rate") })
+			Button("Rate", systemImage: "star", action: { requestReview() })
 			Button("Help", systemImage: "questionmark.circle", action: { print("help") })
 		}
 	}
 	
-	var formattingToolbar: some View {
+	var toolbar: some View {
 		HStack {
 			Button(action: { undoManager?.undo() }) {
 				Image(systemName: "arrow.uturn.backward")
@@ -95,19 +82,22 @@ struct ContentView: View {
 				Image(systemName: "scissors")
 			}
 			.help("Cut")
-			
-			// Print
+
 			Button(action: printAction) {
 				Image(systemName: "printer")
 			}
 			.help("Print")
+			
+			Button(action: selectAllAction) {
+				Image(systemName: "character.textbox")
+			}
+			.help("Select All")
 		}
-		.padding(.horizontal)
 		.padding(.vertical, 8)
-		.buttonStyle(.borderless)
 	}
 	
 	// MARK: - Formatting Actions
+	
 	private func showColorPanel() {
 		NSColorPanel.shared.orderFront(nil)
 		NSApp.sendAction(#selector(NSTextView.changeColor(_:)), to: nil, from: nil)
@@ -138,6 +128,10 @@ struct ContentView: View {
 	
 	private func cutAction() {
 		NSApp.sendAction(#selector(NSText.cut(_:)), to: nil, from: nil)
+	}
+	
+	private func selectAllAction() {
+		NSApp.sendAction(#selector(NSText.selectAll(_:)), to: nil, from: nil)
 	}
 	
 	private func printAction() {
