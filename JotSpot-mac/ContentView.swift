@@ -13,29 +13,22 @@ struct ContentView: View {
 	@Environment(\.undoManager) var undoManager
 	@Environment(\.requestReview) private var requestReview
 	@Binding var document: JotSpot_macDocument
-	@State private var title: String = ""
 	
 	var body: some View {
 		VStack {
 			toolbar
-			
-			// Document title bar
-			HStack {
-				TextField("New Document", text: $title)
-				Button("Name Document", action: { print(title) })
-			}
-			.padding(.horizontal)
 			
 			// Rich text editor
 			RichTextEditor(
 				attributedText: $document.attributedText,
 				undoManager: undoManager
 			)
-			.padding()
+			.padding(4)
 			.background(Color(nsColor: .textBackgroundColor))
 			.clipShape(RoundedRectangle(cornerRadius: 8))
 			.shadow(color: .black.opacity(0.15), radius: 4, y: 2)
-			.padding()
+			.padding(.horizontal)
+			.padding(.bottom)
 		}
 		.toolbar {
 			navBar
@@ -47,7 +40,6 @@ struct ContentView: View {
 			Button("Colors", systemImage: "paintpalette", action: showColorPanel)
 			Button("Fonts", systemImage: "textformat", action: showFontPanel)
 			Button("Rate", systemImage: "star", action: { requestReview() })
-			Button("Help", systemImage: "questionmark.circle", action: { print("help") })
 		}
 	}
 	
