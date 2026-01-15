@@ -6,6 +6,20 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeName</key>
+			<string>JotSpot Document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.jotspot.jot-document</string>
+			</array>
+			<key>NSUbiquitousDocumentUserActivityType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).jotdocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeName</key>
 			<string>Rich Text Document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
@@ -17,6 +31,26 @@
 			</array>
 			<key>NSUbiquitousDocumentUserActivityType</key>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).richtextdocument</string>
+		</dict>
+	</array>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.rtf</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>JotSpot Document</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.jotspot.jot-document</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>jot</string>
+				</array>
+			</dict>
 		</dict>
 	</array>
 </dict>

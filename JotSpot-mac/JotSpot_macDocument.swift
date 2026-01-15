@@ -9,6 +9,13 @@ import SwiftUI
 import UniformTypeIdentifiers
 import AppKit
 
+// Define the custom .jot UTType that conforms to RTF
+extension UTType {
+    static var jotDocument: UTType {
+        UTType(exportedAs: "com.jotspot.jot-document", conformingTo: .rtf)
+    }
+}
+
 struct JotSpot_macDocument: FileDocument {
     var attributedText: NSAttributedString
     
@@ -16,9 +23,10 @@ struct JotSpot_macDocument: FileDocument {
         self.attributedText = attributedText
     }
     
-    // Support RTF and plain text files
-    static var readableContentTypes: [UTType] = [.rtf, .rtfd, .plainText]
-    static var writableContentTypes: [UTType] = [.rtf]
+    // Support .jot, RTF, RTFD, and plain text files for reading
+    // Write exclusively to .jot format
+    static var readableContentTypes: [UTType] = [.jotDocument, .rtf, .rtfd, .plainText]
+    static var writableContentTypes: [UTType] = [.jotDocument]
     
     init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents else {
