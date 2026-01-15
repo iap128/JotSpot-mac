@@ -172,7 +172,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 3.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "come.n818pe.JotSpot-mac";
+				PRODUCT_BUNDLE_IDENTIFIER = com.webnode.iappletech128.JotSpot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -218,7 +218,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 3.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "come.n818pe.JotSpot-mac";
+				PRODUCT_BUNDLE_IDENTIFIER = com.webnode.iappletech128.JotSpot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
